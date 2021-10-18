@@ -11,7 +11,9 @@ A Lo Shu Square Square is true if the row, column, and diagnol of numbers all eq
 
 - The program then determines whether the square is a Lo Shu Square or not.
 
-![Screenshot (159)](https://user-images.githubusercontent.com/79016565/137794473-960dd61f-7065-4dc6-ad34-102cece133d3.png)    ![Screenshot (162)](https://user-images.githubusercontent.com/79016565/137794499-a1f5514c-5cb2-40a8-a287-595a4ffe3487.png)
+![Screenshot (159)](https://user-images.githubusercontent.com/79016565/137794473-960dd61f-7065-4dc6-ad34-102cece133d3.png)
+
+![Screenshot (162)](https://user-images.githubusercontent.com/79016565/137794499-a1f5514c-5cb2-40a8-a287-595a4ffe3487.png)
 
 
 
