@@ -5,7 +5,8 @@ A Lo Shu Square Square is true if the row, column, and diagnol of numbers all eq
 
 Program asks for user input using numbers 1 - 9 with no repition of numbers. If repeating numbers or numbers not in range, program will ask user to insert another number.
 
-![Screenshot (166)](https://user-images.githubusercontent.com/79016565/137794130-91e7b1b1-8313-4aab-ae39-34d9937d7565.png)
+![Screenshot (167)](https://user-images.githubusercontent.com/79016565/137794200-631af39c-6fc4-48c9-87d0-6c970e09df2b.png)
+
 
 
 
