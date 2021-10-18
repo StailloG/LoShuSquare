@@ -1,0 +1,217 @@
+/*
+	Stephanie Castillo
+
+	LoShuSquare.cpp
+
+	Determines if user input (on a 3 x 3 grid) creates a Lo Shu Square,
+	meaning that each column and diagnol of numbers all equal the same
+	number.
+
+	Input: Prompt user for number 1 - 9 for each square in a 3 by 3 grid.
+
+	Processing: 1. Prompt user for numbers (1-9).
+				2. Display numbers 1 - 3 for the first row,
+				   display numbers 4 - 6 for the second row,
+				   display numbers 7 - 9 for the third row.
+				3. Validate if user input is within the range of numbers (1 - 9) &
+				   validate if user input is a duplicated number.
+				   Display error message if not within # range or if numbers duplicate.
+				4. Display the 3 x 3 grid with user input numbers.
+				5. Determine wether the square is a lu Sho Sqaure.
+				   Display the total numbers that add up from each row, column, and diagnol.
+				   If all equals the same number (15), return true for Lo Shu Square!
+				   Return false if otherwise.
+				6. Display if a Lo Shu Square or not.
+
+	Output: Display if 3 x 3 grid is a Lo Shu Square or if it isn't one.
+*/
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+//global variables
+const int GRID_COL = 3, GRID_ROW = 3;
+
+//prototypes
+void userInput(int arr[][GRID_COL]);
+void displaySquareOutline(int arr[][GRID_COL]);
+bool loShuSquare(int(&arr)[GRID_ROW][GRID_COL]);
+
+
+int main()
+{
+	//variables
+	int box[GRID_ROW][GRID_COL];
+	bool isLoShuSquare;
+
+	//intro
+	cout << "\nLo Shu Magic Square App ..." << endl
+		<< "--------------------------------" << endl;
+
+	//prompt user for numbers (1-9)
+	userInput(box);
+
+	//display square with user input
+	displaySquareOutline(box);
+
+	//determine if Lo Shu Square or not
+	isLoShuSquare = loShuSquare(box);
+
+	return 0;
+}
+
+/*
+	Ask user for digit inputs (1-9) and loop until all rows and columns
+		of the Lo Shu Square are filled in.
+	Display error message if digit is less than 1 or greater than 9, as
+		well as if there are duplicated numbers.
+*/
+void userInput(int arr[][GRID_COL])
+{
+	//variables
+	int digit, i = 1;
+	bool error[10] = { 0 }; //for if user input number is duplicated
+
+	//user input for rows and columns
+	for (int row = 0; row < GRID_ROW; row++)
+	{
+		for (int col = 0; col < GRID_COL;)
+		{
+			do
+			{
+				//user input
+				cout << "\nEnter digit " << i << ": ";
+				cin >> digit;
+
+				//error for numbers outside range (1-9)
+				if (digit < 1 || digit > 9)
+				{
+					cout << "\nError... Invalid number. Please try again." << endl;
+				}
+				else if (error[digit]) //error[digit] = false
+				{
+					cout << "\nError... Duplicated number. Please try again." << endl;
+				}
+				else
+				{
+					error[digit] = true;
+					arr[row][col] = digit;
+
+					//incriment loop to next column
+					col++;
+
+					//incriment element
+					i++;
+				}
+			} while (digit < 1 || digit > 9); //do ask "Enter digit" while digit is not in range of 1-9 unduplicated
+		}
+	}
+
+	return;
+}
+
+
+/*
+	Incriments rows and columns to display the Lo Shu Square.
+*/
+void displaySquareOutline(int arr[][GRID_COL])
+{
+	//row incriment
+	for (int row = 0; row < GRID_ROW; row++)
+	{
+		//new line
+		cout << endl;
+
+		//column incriment
+		for (int col = 0; col < GRID_COL; col++)
+		{
+			//display row and column
+			cout << "|" << arr[row][col] << "|";
+		}
+	}
+
+	cout << endl;
+
+	return;
+}
+
+/*
+	Adds the rows and columns together, as well as both diagnols
+		to determine if it all equals to 15.
+	Displays the total of the rows, columns, and diagnols from the
+		user input & determines if it's a Lo Shu Square or not.
+*/
+bool loShuSquare(int(&arr)[GRID_ROW][GRID_COL])
+{
+	//variables
+	int rowSum = 0, colSum = 0, diagSum = 0, diagSum2 = 0, rows[GRID_ROW], col[GRID_COL];
+	bool isLoShuSquare;
+
+	//new line
+	cout << "\n";
+
+	//adding rows and columns of user input
+	for (int rowInc = 0; rowInc < GRID_ROW; rowInc++)
+	{
+		rowSum = 0;
+		for (int colInc = 0; colInc < GRID_COL; colInc++)
+		{
+			rowSum += arr[rowInc][colInc];
+			rows[rowInc] = rowSum;
+		}
+
+		//display
+		cout << "The sum of row " << rowInc + 1 << ": " << rowSum << endl;
+	}
+	cout << "\n";
+	for (int colInc = 0; colInc < GRID_COL; colInc++)
+	{
+		colSum = 0;
+		for (int row = 0; row < GRID_ROW; row++)
+		{
+			colSum += arr[row][colInc];
+			col[colInc] = colSum;
+		}
+		cout << "The sum of column " << colInc + 1 << ": " << colSum << endl;
+	}
+
+	//new line
+	cout << "\n";
+
+
+	//adding diagnols of user input
+	for (int i = 0; i < GRID_ROW; i++)
+	{
+		for (int x = 0; x < GRID_COL; x++)
+		{
+			if (i == x)
+			{
+				diagSum += arr[i][x];
+			}
+			if (x == i)
+			{
+				diagSum2 += arr[x][i];
+			}
+		}
+	}
+
+	//display sum of rows/columns/diagnols
+	cout << "Sum of Diagnal 1: " << diagSum << endl;
+	cout << "Sum of Diagnal 2: " << diagSum2 << endl;
+
+	//determine if Lo Shu Square or not
+	if (rows[0] == rows[1] && rows[1] == rows[2] && col[0] == col[1] && col[1] == col[2] && rowSum && colSum && diagSum && diagSum2 == 15)
+	{
+		cout << "\nYes, all of the digits you have entered creates a Lo Shu Square!" << endl;
+		isLoShuSquare = true;
+	}
+	else
+	{
+		cout << "\nNo, all of the digits you have entered do not create a Lo Shu Square." << endl;
+		isLoShuSquare = false;
+	}
+
+	return isLoShuSquare;
+}
+
