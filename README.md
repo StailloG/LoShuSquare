@@ -11,7 +11,7 @@ A Lo Shu Square Square is true if the row, column, and diagnol of numbers all eq
 
 ## Program Images
 
-If user input invalid or not within range:
+If user input duplicated or not within range:
 
 ![Screenshot (167)](https://user-images.githubusercontent.com/79016565/137794200-631af39c-6fc4-48c9-87d0-6c970e09df2b.png)
 
